@@ -11,7 +11,20 @@ Raw Data → Python Ingestion → PostgreSQL → dbt (staging → marts) → Air
 ```
 
 ---
+## Architecture Diagram
 
+```mermaid
+flowchart LR
+    A[Raw Data CSV] --> B[Python Ingestion Script]
+    B --> C[(PostgreSQL Database)]
+    C --> D[dbt Staging Models]
+    D --> E[dbt Mart Models]
+    E --> F[Analytics Table: fact_events]
+
+    G[Airflow DAG] --> B
+    G --> D
+    G --> E
+```
 ## Features
 
 * Automated data ingestion into PostgreSQL using Python
