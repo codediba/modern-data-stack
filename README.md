@@ -97,6 +97,9 @@ raw_data → stg_data → fact_events
 * **fact_events**: aggregated analytical table
 
 ---
+## Airflow Pipeline
+
+![Airflow DAG](images/airflow_dag.png)
 
 ## Tech Stack
 
