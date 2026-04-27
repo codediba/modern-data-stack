@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: stg_data
+    columns:
+      - name: id
+        tests:
+          - not_null
+          - unique
+
+  - name: fact_events
+    columns:
+      - name: event_date
+        tests:
+          - not_null

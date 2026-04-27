@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: datawarehouse
+    ports:
+      - "5432:5432"
+    restart: always
+
+  airflow:
+    image: apache/airflow:2.9.3
+    container_name: airflow_app
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+    command: airflow standalone
+    restart: always
