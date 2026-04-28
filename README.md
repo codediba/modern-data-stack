@@ -17,11 +17,18 @@ Raw Data → Python Ingestion → PostgreSQL → dbt (staging → marts) → Air
 flowchart LR
     A[Raw Data CSV] --> B[Python Ingestion Script]
     B --> C[(PostgreSQL Database)]
-    C --> D[dbt Staging Models]
-    D --> E[dbt Mart Models]
-    E --> F[Analytics Table: fact_events]
 
-    G[Airflow DAG] --> B
+    subgraph dbt Layer
+        C --> D[Staging Models]
+        D --> E[Mart Models]
+        E --> F[Analytics Table: fact_events]
+    end
+
+    subgraph Orchestration
+        G[Airflow DAG]
+    end
+
+    G --> B
     G --> D
     G --> E
 ```
